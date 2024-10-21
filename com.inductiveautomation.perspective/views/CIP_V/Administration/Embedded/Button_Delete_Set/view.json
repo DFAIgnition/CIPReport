@@ -1,0 +1,79 @@
+{
+  "custom": {},
+  "params": {
+    "rowData": "value"
+  },
+  "propConfig": {
+    "params.rowData": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 32,
+      "width": 80
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\t\n\t# Get all the parameters we need to delete\n\t\n\tid \t\t\u003d self.view.params.rowData[\u0027id\u0027]\n\n\ttxId \u003d system.db.beginTransaction(timeout\u003d5000)\n\n\ttry:\n\t\n\t\t# Delete Trend\n\t\tnamedQuery \u003d \"CIP_Q/DB_Delete/Delete_StepSet\"\n\t\tparameters \u003d {\n\t\t\t\u0027id\u0027:\t\t\tid\n\t\t}\n\t\t\n\t\taffected_rows \u003d system.db.runNamedQuery(system.project.getProjectName(), namedQuery, parameters,tx\u003dtxId)\n\t\t\n\t\tsystem.db.commitTransaction(txId)\n                        \t\t\t\n\t\t# Update the table with lines \n\t\tsystem.perspective.sendMessage(\"update_bindings\", payload \u003d {}, scope \u003d \"page\")\n\n\t\tCORE_P.Utils.showSuccess(self, self.view.params.rowData[\u0027id\u0027]) \n\t\t\n\t\tself.props.value\u003d0\n\n\n\texcept:\n\t\tsystem.db.rollbackTransaction(txId)\n\t\tself.props.value\u003d0\n\t\tCORE_P.Utils.errorPopup(\u0027Error deleting Set:\u0027) #  + str(sys.exc_info())"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Delete"
+        },
+        "position": {
+          "height": 24,
+          "width": 72,
+          "x": 4,
+          "y": 4
+        },
+        "props": {
+          "confirm": {
+            "enabled": true
+          },
+          "readyState": {
+            "icon": {
+              "style": {
+                "height": "24px",
+                "width": "2rem"
+              }
+            },
+            "text": "Delete"
+          },
+          "style": {
+            "backgroundColor": "#FF4747"
+          },
+          "writingState": {
+            "icon": {
+              "path": "material/hourglass_empty",
+              "style": {
+                "height": "24px",
+                "width": "2rem"
+              }
+            },
+            "style": {
+              "backgroundColor": "#FFCCCC"
+            },
+            "text": "Deleting..."
+          }
+        },
+        "type": "ia.input.oneshotbutton"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "929963ae8cdd3b16a5a0fdd4067818d7b9ffa562032a9f882b0ce371bd398b5c",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "nfische",
+      "timestamp": "2024-05-02T17:20:37Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "step_number",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "step_type_id",
+        "sqlType": 2
+      }
+    ]
+  }
+}

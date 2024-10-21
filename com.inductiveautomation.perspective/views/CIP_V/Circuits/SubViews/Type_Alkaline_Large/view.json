@@ -1,0 +1,98 @@
+{
+  "custom": {},
+  "params": {
+    "rowData": ""
+  },
+  "propConfig": {
+    "params.rowData": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 18,
+      "width": 110
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Alkaline"
+            },
+            "position": {
+              "basis": "100px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.rowData[\u0027type_alkaline\u0027]"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "#D5D5D533",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": true,
+                          "output": "#576349"
+                        },
+                        {
+                          "input": false,
+                          "output": "#D5D5D533"
+                        }
+                      ],
+                      "outputType": "color",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "borderRadius": "4px",
+                "classes": "CIP_S/Framework/Card/Value",
+                "color": "#FFFFFF",
+                "marginLeft": 5,
+                "marginRight": 5,
+                "paddingLeft": 5,
+                "paddingRight": 5,
+                "textAlign": "center"
+              },
+              "text": "Alkaline"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Type"
+        },
+        "position": {
+          "basis": "110px",
+          "shrink": 0
+        },
+        "props": {
+          "justify": "space-evenly",
+          "style": {
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "justify": "space-evenly"
+    },
+    "type": "ia.container.flex"
+  }
+}

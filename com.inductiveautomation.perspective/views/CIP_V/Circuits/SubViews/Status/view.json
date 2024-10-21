@@ -1,0 +1,108 @@
+{
+  "custom": {},
+  "params": {
+    "rowData": ""
+  },
+  "propConfig": {
+    "params.rowData": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 18,
+      "width": 150
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Status"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.rowData[\u0027stop_reason\u0027]"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "#D9000000",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": "Completed",
+                          "output": "#00AC00"
+                        },
+                        {
+                          "input": "Stopped",
+                          "output": "#0000FF"
+                        },
+                        {
+                          "input": "In Progress",
+                          "output": "#FF8C00"
+                        }
+                      ],
+                      "outputType": "color",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.rowData[\u0027stop_reason\u0027]"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "borderRadius": "4px",
+                "classes": "CIP_S/Framework/Card/Value",
+                "color": "#FFFFFF",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Counter"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "alignContent": "center",
+          "alignItems": "center",
+          "justify": "center",
+          "style": {
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignContent": "center",
+      "alignItems": "center",
+      "justify": "center"
+    },
+    "type": "ia.container.flex"
+  }
+}

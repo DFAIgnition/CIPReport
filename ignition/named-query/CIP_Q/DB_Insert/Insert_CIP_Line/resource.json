@@ -1,0 +1,175 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "c93bb2a2ba2dea5f7bdfc15c7e9dd3cb2b7ac89287e1afb691c327aac8343f61",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "nfische",
+      "timestamp": "2024-05-02T16:34:25Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "name",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "description",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "system_id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "supply_flow_transmitter",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "supply_cond_transmitter",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "supply_press_transmitter",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "supply_flow_switch",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "supply_cond_switch",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "supply_press_switch",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "supply_temp_transmitter",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "return_temp_transmitter",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "return_flow_transmitter",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "return_cond_transmitter",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "return_press_transmitter",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "supply_temp_switch",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "return_temp_switch",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "return_flow_switch",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "return_cond_switch",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "return_press_switch",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "type_caustic",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "type_acid",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "type_sanitizer",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "type_alkaline",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "cmd_advance",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "cmd_pause",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "cmd_hold",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "cmd_resume",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "updated_by",
+        "sqlType": 7
+      }
+    ]
+  }
+}

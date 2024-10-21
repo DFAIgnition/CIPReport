@@ -1,0 +1,95 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "d0ba94497019199e740233af92ac40155974eef525843f34d5bede054699fcbf",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "nfische",
+      "timestamp": "2024-05-02T19:19:06Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "name",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "description",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "line_id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "step_number",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "step_type_id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "state_idle",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "state_running",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "state_held",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "state_stopped",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "state_completed",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "state_paused",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "updated_by",
+        "sqlType": 7
+      }
+    ]
+  }
+}

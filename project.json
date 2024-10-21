@@ -1,0 +1,7 @@
+{
+  "title": "CIP Reporting",
+  "description": "CIP Reporting Application",
+  "parent": "Core",
+  "enabled": true,
+  "inheritable": false
+}

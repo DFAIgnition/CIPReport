@@ -1,0 +1,1168 @@
+{
+  "custom": {},
+  "params": {},
+  "permissions": {
+    "securityLevels": [
+      {
+        "children": [],
+        "name": "Authenticated"
+      }
+    ],
+    "type": "AnyOf"
+  },
+  "props": {
+    "defaultSize": {
+      "height": 818
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "SubHeaderEmbedded"
+        },
+        "position": {
+          "basis": "32px",
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "help_text": "Help Text",
+            "help_title": "Step Descriptions",
+            "icon": "settings",
+            "text": "Maintain Step Descriptions"
+          },
+          "path": "CORE_V/Headers/SubHeader"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "CurrentSite"
+        },
+        "position": {
+          "basis": "0px",
+          "display": false,
+          "shrink": 0
+        },
+        "props": {
+          "params": {
+            "site": null,
+            "site_id": null
+          },
+          "path": "CORE_V/Utils/CurrentSite"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t\t\n\t\n\t# Make sure we have edit permission to do this\n\tif (not CORE_P.User.hasPermission(self, Constants_P.PROJECT[\u0027project_name\u0027], \u0027SITEADMIN\u0027)):\n\t\treturn\n\t\t\t\n\t# Opens a popup view. \n\tsystem.perspective.openPopup(\"StepListAddSet\",\n\t\t\t\t\t\t\t\t  \u0027CIP_V/Administration/Step/StepList_Add_Type\u0027, \n\t\t\t\t\t\t\t\t  params \u003d {\u0027site_id\u0027:self.parent.parent.getChild(\"CurrentSite\").props.params.site_id,\n\t\t\t\t\t\t\t\t\t\t\t\u0027set_name\u0027: \u0027\u0027,\n\t\t\t\t\t\t\t\t\t\t\t\u0027set_description\u0027: \u0027\u0027,\n\t\t\t\t\t\t\t\t  \t\t\t}, \n\t\t\t\t\t\t\t\t  showCloseIcon \u003d True, \n\t\t\t\t\t\t\t\t  title \u003d \u0027Add New Step Dataset\u0027, \n\t\t\t\t\t\t\t\t  modal \u003d True)\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "AddTypeButton"
+            },
+            "position": {
+              "basis": "100px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "custom.selected_plant_id": {
+                "persistent": false
+              },
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "site_id": "{../CurrentSite.props.params.site_id}",
+                      "username": "{session.props.auth.user.userName}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\treturn CORE_P.User.hasPermission(self, Constants_P.PROJECT[\u0027project_name\u0027], \u0027SITEADMIN\u0027)",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "marginRight": 10
+              },
+              "text": "Add Set"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t\t\n\t\n\t# Make sure we have edit permission to do this\n\tif (not CORE_P.User.hasPermission(self, Constants_P.PROJECT[\u0027project_name\u0027], \u0027SITEADMIN\u0027)):\n\t\treturn\n\t\t\t\n\t# Opens a popup view. \n\tsystem.perspective.openPopup(\"StepListAddSet\",\n\t\t\t\t\t\t\t\t  \u0027CIP_V/Administration/Step/StepList_Add_Step\u0027, \n\t\t\t\t\t\t\t\t  params \u003d {\u0027site_id\u0027:self.parent.parent.getChild(\"CurrentSite\").props.params.site_id,\n\t\t\t\t\t\t\t\t  \t\t\t\u0027step_type_id\u0027:self.parent.parent.getChild(\"Table_Set\").props.selection.data[0].id,\n\t\t\t\t\t\t\t\t\t\t\t\u0027step_number\u0027: \u0027\u0027,\n\t\t\t\t\t\t\t\t\t\t\t\u0027step_description\u0027: \u0027\u0027,\n\t\t\t\t\t\t\t\t  \t\t\t}, \n\t\t\t\t\t\t\t\t  showCloseIcon \u003d True, \n\t\t\t\t\t\t\t\t  title \u003d \u0027Add New Step For \u0027 +str(self.parent.parent.getChild(\"Table_Set\").props.selection.data[0].name), \n\t\t\t\t\t\t\t\t  modal \u003d True)\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "AddStepButton"
+            },
+            "position": {
+              "basis": "100px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "custom.selected_plant_id": {
+                "persistent": false
+              },
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "selection": "isGood({.../Table_Set.props.selection.data[0].id})",
+                      "site_id": "{../CurrentSite.props.params.site_id}",
+                      "username": "{session.props.auth.user.userName}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value[\u0027selection\u0027]:\n\t\treturn CORE_P.User.hasPermission(self, Constants_P.PROJECT[\u0027project_name\u0027], \u0027SITEADMIN\u0027)\n\telse:\n\t\treturn False",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              },
+              "props.primary": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "selection": "isGood({.../Table_Set.props.selection.data[0].id})",
+                      "site_id": "{../CurrentSite.props.params.site_id}",
+                      "username": "{session.props.auth.user.userName}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value[\u0027selection\u0027]:\n\t\treturn CORE_P.User.hasPermission(self, Constants_P.PROJECT[\u0027project_name\u0027], \u0027SITEADMIN\u0027)\n\telse:\n\t\treturn False",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "marginRight": 10
+              },
+              "text": "Add Step"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "#------------------------------------------------------------------------------------------------------\n# download selected set to modify in excel\n#------------------------------------------------------------------------------------------------------\n\n\tCIP_P.Step_Dictionary.saveDetailsToCSV(self,self.parent.parent.getChild(\"Table_Set\").props.selection.data[0].name,self.parent.parent.getChild(\"CurrentSite\").props.params.site_id)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "DownloadSet",
+              "tooltip": {
+                "enabled": true,
+                "location": "center-left",
+                "text": "Download Selection"
+              }
+            },
+            "position": {
+              "basis": "32px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "expression": "isGood({.../Table_Set.props.selection.data[0].id})"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "image": {
+                "height": 28,
+                "icon": {
+                  "path": "material/cloud_download"
+                },
+                "width": 28
+              },
+              "primary": false,
+              "style": {
+                "marginRight": 10
+              },
+              "text": ""
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "#------------------------------------------------------------------------------------------------------\n# generate an empty csv file that can be used to upload a new set of step descriptions\n#------------------------------------------------------------------------------------------------------\n\n\tCIP_P.Step_Dictionary.generateEmptyCSV(self)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "DownloadEmpty",
+              "tooltip": {
+                "enabled": true,
+                "location": "center-left",
+                "text": "Download empty csv file"
+              }
+            },
+            "position": {
+              "basis": "32px",
+              "shrink": 0
+            },
+            "props": {
+              "image": {
+                "height": 28,
+                "icon": {
+                  "path": "material/arrow_circle_down"
+                },
+                "width": 28
+              },
+              "primary": false,
+              "style": {
+                "marginRight": 10
+              },
+              "text": ""
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "component": {
+                "onFileReceived": {
+                  "config": {
+                    "script": "\t\n\t\n\t# Confirm that the user does, in fact, have permissions to do this\n\tif (not CORE_P.User.hasPermission(self, Constants_P.PROJECT[\u0027project_name\u0027], \u0027SITEADMIN\u0027)):\t\n\t\tCORE_P.Utils.errorPopup(\"Sorry, you don\u0027t have permission to upload step sets.\")\n\t\treturn\t\n\n\tself.view.params.data\u003dCIP_P.Step_Dictionary.loadCSV(self, event, self.parent.parent.getChild(\"CurrentSite\").props.params.site_id)\n\t\n\treturn"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "FileUpload",
+              "tooltip": {
+                "enabled": true,
+                "location": "center-left",
+                "text": "Upload Step dataset"
+              }
+            },
+            "position": {
+              "basis": "35px"
+            },
+            "props": {
+              "fileSizeLimit": 50,
+              "fileUploadIcon": {
+                "style": {
+                  "classes": ""
+                }
+              },
+              "maxUploads": 1,
+              "supportedFileTypes": [
+                "csv"
+              ]
+            },
+            "type": "ia.input.fileupload"
+          }
+        ],
+        "meta": {
+          "name": "TopContainer"
+        },
+        "position": {
+          "basis": "32px"
+        },
+        "props": {
+          "alignContent": "flex-end",
+          "alignItems": "center",
+          "justify": "flex-end",
+          "style": {
+            "marginBottom": 1,
+            "marginLeft": 4,
+            "marginRight": 4,
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "events": {
+          "component": {
+            "onEditCellCommit": {
+              "config": {
+                "script": "\t\n\tif event.column \u003d\u003d \u0027name\u0027:\n\t\n\t\ttry:\n\t\t\n\t\t\t# Get all the parameters we need to save\n\t\t\tid\u003dself.props.selection.data[0].id\n\t\t\tname \u003d event.value\n\t\t\t\n\t\t\tnamedQuery \u003d \"CIP_Q/DB_Update/Update_Step_Type_Name\"\n\t\t\tparameters \u003d {\n\t\t\t\t\t\t\t\u0027id\u0027:\t\t\t\t\t\tid, \n\t\t\t\t\t\t\t\u0027name\u0027:\t\t\t\t\t\tname,\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\taffected_rows \u003d system.db.runNamedQuery(system.project.getProjectName(), namedQuery, parameters)\n\n\t\texcept:\n\n\t\t\tCORE_P.Utils.errorPopup(\u0027Error changing Set Name:\u0027) \n\t\t\t\n\tif event.column \u003d\u003d \u0027description\u0027:\n\t\n\t\ttry:\n\t\t\n\t\t\t# Get all the parameters we need to save\n\t\t\tid\u003dself.props.selection.data[0].id\n\t\t\tdescription \u003d event.value\n\t\t\t\n\t\t\tnamedQuery \u003d \"CIP_Q/DB_Update/Update_Step_Type_Description\"\n\t\t\tparameters \u003d {\n\t\t\t\t\t\t\t\u0027id\u0027:\t\t\t\t\t\tid, \n\t\t\t\t\t\t\t\u0027description\u0027:\t\t\t\tdescription,\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\taffected_rows \u003d system.db.runNamedQuery(system.project.getProjectName(), namedQuery, parameters)\n\n\t\texcept:\n\n\t\t\tCORE_P.Utils.errorPopup(\u0027Error changing Set Description:\u0027) \n\t\t\t\t\t\n\t# Update the table\n\tsystem.perspective.sendMessage(\"update_bindings\", payload \u003d {}, scope \u003d \"page\")"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Table_Set"
+        },
+        "position": {
+          "basis": "423px"
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "site_id": "{../CurrentSite.props.params.site_id}",
+                  "username": "{session.props.auth.user.userName}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\treturn CORE_P.User.hasPermission(self, Constants_P.PROJECT[\u0027project_name\u0027], \u0027SITEADMIN\u0027)\n\t\t\n\t",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.data": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "site_id": "{../CurrentSite.props.params.site_id}"
+                },
+                "queryPath": "CIP_Q/DB_Query/Get_Step_Type",
+                "returnFormat": "json"
+              },
+              "transforms": [
+                {
+                  "code": "\t\n    # Create a dictionary to store unique names\n    unique_names \u003d {}\n\n    # Loop through each row in the dataset\n    for row in value:\n        name \u003d row[\"name\"]\n        # Check if the name already exists in the dictionary\n        if name not in unique_names:\n            # If not, add it to the dictionary with the entire row as the value\n            unique_names[name] \u003d row\n\n    # Create a list of unique rows from the dictionary\n    unique_rows \u003d list(unique_names.values())\n\n    return unique_rows",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          },
+          "props.selection.data[0].id": {
+            "onChange": {
+              "enabled": null,
+              "script": "\tself.getSibling(\"Table_Detail\").refreshBinding(\"props.data\")"
+            }
+          }
+        },
+        "props": {
+          "columns": [
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": true,
+              "field": "name",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Set Name"
+              },
+              "justify": "center",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": true,
+              "field": "description",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Set Description"
+              },
+              "justify": "center",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": false,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "id",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Delete"
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "view",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": true,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "CIP_V/Administration/Embedded/Button_Delete_Set",
+              "visible": true,
+              "width": 80
+            }
+          ],
+          "dragOrderable": false,
+          "emptyMessage": {
+            "noData": {
+              "text": "Please select a different plant from the dropdown list, or upload a set"
+            }
+          },
+          "filter": {
+            "enabled": true
+          },
+          "style": {
+            "marginLeft": 4,
+            "marginRight": 4
+          },
+          "virtualized": false
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "update_bindings",
+              "pageScope": true,
+              "script": "\tself.refreshBinding(\"props.data\")\n",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.table"
+      },
+      {
+        "events": {
+          "component": {
+            "onEditCellCommit": {
+              "config": {
+                "script": "\n\t\t\n\tif event.column \u003d\u003d \u0027step_number\u0027:\n\t\n\t\ttry:\n\t\t\n\t\t\t# Get all the parameters we need to save\n\t\t\tstep_type_id\u003dself.props.selection.data[0].id\n\t\t\tstep_number \u003d event.value\n\t\t\tstep_description \u003d self.props.selection.data[0].step_description\n\t\t\t\n\t\t\tnamedQuery \u003d \"CIP_Q/DB_Update/Update_Step_Number\"\n\t\t\tparameters \u003d {\n\t\t\t\t\t\t\t\u0027step_type_id\u0027:\t\t\t\tstep_type_id, \n\t\t\t\t\t\t\t\u0027step_number\u0027:\t\t\t\tstep_number,\n\t\t\t\t\t\t\t\u0027step_description\u0027:\t\t\tstep_description\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\taffected_rows \u003d system.db.runNamedQuery(system.project.getProjectName(), namedQuery, parameters)\n\n\t\texcept:\n\n\t\t\tCORE_P.Utils.errorPopup(\u0027Error changing Step Number:\u0027) #  + str(sys.exc_info())\n\t\t\t\n\tif event.column \u003d\u003d \u0027step_description\u0027:\n\t\n\t\ttry:\n\t\t\n\t\t\t# Get all the parameters we need to save\n\t\t\tstep_type_id\u003dself.props.selection.data[0].id\n\t\t\tstep_number \u003d self.props.selection.data[0].step_number\n\t\t\tstep_description \u003d event.value\n\t\t\t\n\t\t\tnamedQuery \u003d \"CIP_Q/DB_Update/Update_Step_Description\"\n\t\t\tparameters \u003d {\n\t\t\t\t\t\t\t\u0027step_type_id\u0027:\t\t\t\tstep_type_id, \n\t\t\t\t\t\t\t\u0027step_number\u0027:\t\t\t\tstep_number,\n\t\t\t\t\t\t\t\u0027step_description\u0027:\t\t\tstep_description\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\taffected_rows \u003d system.db.runNamedQuery(system.project.getProjectName(), namedQuery, parameters)\n\n\t\texcept:\n\n\t\t\tCORE_P.Utils.errorPopup(\u0027Error changing Step Description:\u0027) #  + str(sys.exc_info())\n\t\t\n\t# Update the table\n\tsystem.perspective.sendMessage(\"update_bindings\", payload \u003d {}, scope \u003d \"page\")"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Table_Detail"
+        },
+        "position": {
+          "basis": "400px",
+          "grow": 1
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "site_id": "{../CurrentSite.props.params.site_id}",
+                  "username": "{session.props.auth.user.userName}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\treturn CORE_P.User.hasPermission(self, Constants_P.PROJECT[\u0027project_name\u0027], \u0027SITEADMIN\u0027)\n\t\t\n\t",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.data": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "name": "{../Table_Set.props.selection.data[0].name}",
+                  "site_id": "{../CurrentSite.props.params.site_id}"
+                },
+                "queryPath": "CIP_Q/DB_Query/Get_Step_Inner",
+                "returnFormat": "json"
+              },
+              "transforms": [
+                {
+                  "code": "\n    rows \u003d []\n\n    # Attempt to safely get the selected ID from the sibling component\n    try:\n        selected_id \u003d self.getSibling(\"Table_Set\").props.selection.data[0][\u0027id\u0027]\n    except (IndexError, KeyError):\n        # If there\u0027s no selection or the \u0027id\u0027 key is not present, return an empty list\n        return []\n\n    # Loop through each row in the dataset\n    for row in value:\n        if row[\u0027id\u0027] \u003d\u003d selected_id:\n            rows.append(row)  # Correctly use append() to add the row to the list\n\n    return rows",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "columns": [
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": true,
+              "field": "step_number",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Step"
+              },
+              "justify": "center",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": true,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": 150
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": true,
+              "field": "step_description",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Step Description"
+              },
+              "justify": "left",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": 350
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "id",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "never"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Delete"
+              },
+              "justify": "center",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "view",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": true,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "CIP_V/Administration/Embedded/Button_Delete_SetStep",
+              "visible": true,
+              "width": 80
+            }
+          ],
+          "dragOrderable": false,
+          "emptyMessage": {
+            "noData": {
+              "text": "Please select a  step data set on table above."
+            }
+          },
+          "filter": {
+            "enabled": true
+          },
+          "pager": {
+            "initialOption": 100
+          },
+          "style": {
+            "marginLeft": 4,
+            "marginRight": 4
+          },
+          "virtualized": false
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "update_bindings",
+              "pageScope": true,
+              "script": "\tself.refreshBinding(\"props.data\")\n",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.table"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

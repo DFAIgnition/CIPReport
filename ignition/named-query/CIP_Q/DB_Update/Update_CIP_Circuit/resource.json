@@ -1,0 +1,100 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "a1f7195b1e7a62b59343ce298e89b80ab4ae42ba8dd7ec1bfacdb3149566c630",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "nfische",
+      "timestamp": "2024-05-02T19:19:33Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "name",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "description",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "step_number",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "line_id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "step_type_id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "state_idle",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "state_running",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "state_held",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "state_completed",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "state_stopped",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "state_paused",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "updated_by",
+        "sqlType": 7
+      }
+    ]
+  }
+}

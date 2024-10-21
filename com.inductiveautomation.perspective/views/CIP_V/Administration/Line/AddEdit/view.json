@@ -1,0 +1,1935 @@
+{
+  "custom": {},
+  "params": {
+    "cmd_advance": "",
+    "cmd_hold": "",
+    "cmd_pause": "",
+    "cmd_resume": "",
+    "edit": true,
+    "line_description": "",
+    "line_id": "",
+    "line_name": "",
+    "return_cond_switch": "",
+    "return_cond_transmitter": "",
+    "return_flow_switch": "",
+    "return_flow_transmitter": "",
+    "return_press_switch": "",
+    "return_press_transmitter": "",
+    "return_temp_switch": "",
+    "return_temp_transmitter": "",
+    "site_id": "",
+    "supply_cond_switch": "",
+    "supply_cond_transmitter": "",
+    "supply_flow_switch": "",
+    "supply_flow_transmitter": "",
+    "supply_press_switch": "",
+    "supply_press_transmitter": "",
+    "supply_temp_switch": "",
+    "supply_temp_transmitter": "",
+    "system_id": "",
+    "type_acid": "",
+    "type_alkaline": "",
+    "type_caustic": "",
+    "type_sanitizer": ""
+  },
+  "permissions": {
+    "securityLevels": [
+      {
+        "children": [],
+        "name": "Authenticated"
+      }
+    ],
+    "type": "AllOf"
+  },
+  "propConfig": {
+    "params.cmd_advance": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.cmd_hold": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.cmd_pause": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.cmd_resume": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.edit": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.line_description": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.line_id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.line_name": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.return_cond_switch": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.return_cond_transmitter": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.return_flow_switch": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.return_flow_transmitter": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.return_press_switch": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.return_press_transmitter": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.return_temp_switch": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.return_temp_transmitter": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.sample_point_id": {
+      "paramDirection": "input",
+      "persistent": false
+    },
+    "params.site_id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.supply_cond_switch": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.supply_cond_transmitter": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.supply_flow_switch": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.supply_flow_transmitter": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.supply_press_switch": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.supply_press_transmitter": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.supply_temp_switch": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.supply_temp_transmitter": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.system_id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.type_acid": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.type_alkaline": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.type_caustic": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.type_sanitizer": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 439,
+      "width": 880
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "height": 95,
+          "width": 115,
+          "x": 742,
+          "y": 26.5
+        },
+        "props": {
+          "path": "material/construction"
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "height": 32,
+          "width": 140,
+          "x": 12,
+          "y": 11
+        },
+        "props": {
+          "text": "System:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "System_Dropdown"
+        },
+        "position": {
+          "height": 36,
+          "width": 536,
+          "x": 161,
+          "y": 10
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "enableValueCache": false,
+                "parameters": {
+                  "site_id": "{view.params.site_id}"
+                },
+                "queryPath": "CIP_Q/DB_Query/Get_CIP_System",
+                "returnFormat": "json"
+              },
+              "transforms": [
+                {
+                  "code": "\t\n\t# Format and sort the names \n\tformatted_names \u003d sorted([{\"value\": item[\"id\"], \"label\": item[\"name\"]} for item in value],key\u003dlambda x: x[\u0027label\u0027].lower())\n\treturn formatted_names\n\t",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.system_id}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "placeholder": {
+            "text": "Select System Type..."
+          }
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "Name_Label"
+        },
+        "position": {
+          "height": 32,
+          "width": 140,
+          "x": 12,
+          "y": 52
+        },
+        "props": {
+          "text": "Name:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Name_Entry"
+        },
+        "position": {
+          "height": 36,
+          "width": 536,
+          "x": 161,
+          "y": 52
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "toStr({view.params.line_name},\"\")"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "placeholder": "Enter Line Name"
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "Description_Label"
+        },
+        "position": {
+          "height": 32,
+          "width": 140,
+          "x": 13,
+          "y": 93
+        },
+        "props": {
+          "text": "Description:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Description_Entry"
+        },
+        "position": {
+          "height": 36,
+          "width": 536,
+          "x": 162,
+          "y": 93
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "toStr({view.params.line_description},\"\")"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "placeholder": "Enter Line Description"
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "temp_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 12
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.supply_temp_transmitter},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.supply_temp_transmitter\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "temp_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 18
+                },
+                "props": {
+                  "text": "Temperature:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "flow_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 50
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.supply_flow_transmitter},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.supply_flow_transmitter\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "flow_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 58
+                },
+                "props": {
+                  "text": "Flow:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "cond_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 88
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.supply_cond_transmitter},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.supply_cond_transmitter\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "cond_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 96
+                },
+                "props": {
+                  "text": "Conductivity:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "press_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 126
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.supply_press_transmitter},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.supply_press_transmitter\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "press_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 132
+                },
+                "props": {
+                  "text": "Pressure:"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "SupplyTransmitter"
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "temp_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 12
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.supply_temp_switch},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.supply_temp_switch\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "temp_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 18
+                },
+                "props": {
+                  "text": "Temperature:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "flow_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 50
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.supply_flow_switch},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.supply_flow_switch\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "flow_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 58
+                },
+                "props": {
+                  "text": "Flow:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "cond_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 88
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.supply_cond_switch},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.supply_cond_switch\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "cond_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 96
+                },
+                "props": {
+                  "text": "Conductivity:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "press_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 126
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.supply_press_switch},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.supply_press_switch\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "press_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 132
+                },
+                "props": {
+                  "text": "Pressure:"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "SupplySwitches"
+            },
+            "position": {
+              "tabIndex": 1
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "temp_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 12
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.return_temp_transmitter},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.return_temp_transmitter\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "temp_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 18
+                },
+                "props": {
+                  "text": "Temperature:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "flow_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 50
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.return_flow_transmitter},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.return_flow_transmitter\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "flow_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 58
+                },
+                "props": {
+                  "text": "Flow:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "cond_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 88
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.return_cond_transmitter},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.return_cond_transmitter\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "cond_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 96
+                },
+                "props": {
+                  "text": "Conductivity:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "press_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 126
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.return_press_transmitter},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.return_press_transmitter\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "press_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 132
+                },
+                "props": {
+                  "text": "Pressure:"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "ReturnTransmitter"
+            },
+            "position": {
+              "tabIndex": 2
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "temp_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 12
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.return_temp_switch},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.return_temp_switch\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "temp_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 18
+                },
+                "props": {
+                  "text": "Temperature:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "flow_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 50
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.return_flow_switch},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.return_flow_switch\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "flow_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 58
+                },
+                "props": {
+                  "text": "Flow:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "cond_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 88
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.return_cond_switch},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.return_cond_switch\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "cond_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 96
+                },
+                "props": {
+                  "text": "Conductivity:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "press_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 126
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.return_press_switch},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.return_press_switch\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "press_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 132
+                },
+                "props": {
+                  "text": "Pressure:"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "ReturnSwitches"
+            },
+            "position": {
+              "tabIndex": 3
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "sanitizer_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 12
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.type_sanitizer},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.type_sanitizer\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "sanitizer_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 18
+                },
+                "props": {
+                  "text": "Sanitizer:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "caustic_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 50
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.type_caustic},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.type_caustic\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "caustic_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 58
+                },
+                "props": {
+                  "text": "Caustic:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "acid_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 88
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.type_acid},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.type_acid\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "acid_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 96
+                },
+                "props": {
+                  "text": "Acid:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "alkaline_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 126
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.type_alkaline},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.type_alkaline\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "alkaline_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 132
+                },
+                "props": {
+                  "text": "Alkaline:"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Types"
+            },
+            "position": {
+              "tabIndex": 4
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "advance_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 12
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.cmd_advance},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.cmd_advance\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "advance_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 18
+                },
+                "props": {
+                  "text": "Advance:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "pause_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 50
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.cmd_pause},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.cmd_pause\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "pause_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 58
+                },
+                "props": {
+                  "text": "Pause:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "hold_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 88
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.cmd_hold},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.cmd_hold\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "hold_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 96
+                },
+                "props": {
+                  "text": "Hold:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "resume_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 126
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.cmd_resume},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.cmd_resume\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "resume_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 132
+                },
+                "props": {
+                  "text": "Resume:"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Commands"
+            },
+            "position": {
+              "tabIndex": 5
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "Settings"
+        },
+        "position": {
+          "height": 220,
+          "width": 877,
+          "x": 1.5,
+          "y": 152
+        },
+        "props": {
+          "tabSize": {
+            "width": 150
+          },
+          "tabs": [
+            "Supply Transmitter",
+            "Supply Switches",
+            "Return Transmitter",
+            "Return Switches",
+            "Types",
+            "Commands"
+          ]
+        },
+        "type": "ia.container.tab"
+      },
+      {
+        "custom": {
+          "exists": 0
+        },
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t\n\ttxId \u003d system.db.beginTransaction(timeout\u003d5000)\n\t\n\ttry:\n\t\t\n\t\t# Get all the parameters we need to save\n\t\tedit\t\t\t\t\t\t\t\u003d self.view.params.edit\n\t\tupdated_by\t\t\t\t\t\t\u003d self.session.props.auth.user.userName\n\t\tline_id\t\t\t\t\t\t\t\u003d self.view.params.line_id\n\t\tsite_id \t\t\t\t\t\t\u003d self.view.params.site_id\n\t\tsystem_id \t\t\t\t\t\t\u003d self.getSibling(\"System_Dropdown\").props.value\n\t\tline_name\t\t\t\t\t\t\u003d self.getSibling(\"Name_Entry\").props.text\n\t\tline_description\t\t\t\t\u003d self.getSibling(\"Description_Entry\").props.text\n\t\tsupply_temp_transmitter \t\t\u003d self.parent.getChild(\"Settings\").getChild(\"SupplyTransmitter\").getChild(\"temp_tag\").props.params.selectedTag\n\t\tsupply_flow_transmitter \t\t\u003d self.parent.getChild(\"Settings\").getChild(\"SupplyTransmitter\").getChild(\"flow_tag\").props.params.selectedTag\n\t\tsupply_cond_transmitter \t\t\u003d self.parent.getChild(\"Settings\").getChild(\"SupplyTransmitter\").getChild(\"cond_tag\").props.params.selectedTag\n\t\tsupply_press_transmitter \t\t\u003d self.parent.getChild(\"Settings\").getChild(\"SupplyTransmitter\").getChild(\"press_tag\").props.params.selectedTag\n\t\tsupply_temp_switch \t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"SupplySwitches\").getChild(\"temp_tag\").props.params.selectedTag\n\t\tsupply_flow_switch \t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"SupplySwitches\").getChild(\"flow_tag\").props.params.selectedTag\n\t\tsupply_cond_switch \t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"SupplySwitches\").getChild(\"cond_tag\").props.params.selectedTag\n\t\tsupply_press_switch \t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"SupplySwitches\").getChild(\"press_tag\").props.params.selectedTag\n\t\treturn_temp_transmitter \t\t\u003d self.parent.getChild(\"Settings\").getChild(\"ReturnTransmitter\").getChild(\"temp_tag\").props.params.selectedTag\n\t\treturn_flow_transmitter \t\t\u003d self.parent.getChild(\"Settings\").getChild(\"ReturnTransmitter\").getChild(\"flow_tag\").props.params.selectedTag\n\t\treturn_cond_transmitter \t\t\u003d self.parent.getChild(\"Settings\").getChild(\"ReturnTransmitter\").getChild(\"cond_tag\").props.params.selectedTag\n\t\treturn_press_transmitter \t\t\u003d self.parent.getChild(\"Settings\").getChild(\"ReturnTransmitter\").getChild(\"press_tag\").props.params.selectedTag\n\t\treturn_temp_switch \t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"ReturnSwitches\").getChild(\"temp_tag\").props.params.selectedTag\n\t\treturn_flow_switch \t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"ReturnSwitches\").getChild(\"flow_tag\").props.params.selectedTag\n\t\treturn_cond_switch \t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"ReturnSwitches\").getChild(\"cond_tag\").props.params.selectedTag\n\t\treturn_press_switch \t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"ReturnSwitches\").getChild(\"press_tag\").props.params.selectedTag\n\t\ttype_sanitizer\t\t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"Types\").getChild(\"sanitizer_tag\").props.params.selectedTag\n\t\ttype_caustic\t\t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"Types\").getChild(\"caustic_tag\").props.params.selectedTag\n\t\ttype_acid\t\t\t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"Types\").getChild(\"acid_tag\").props.params.selectedTag\n\t\ttype_alkaline\t\t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"Types\").getChild(\"alkaline_tag\").props.params.selectedTag\n\t\tcmd_advance\t\t\t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"Commands\").getChild(\"advance_tag\").props.params.selectedTag\n\t\tcmd_hold\t\t\t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"Commands\").getChild(\"hold_tag\").props.params.selectedTag\n\t\tcmd_pause\t\t\t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"Commands\").getChild(\"pause_tag\").props.params.selectedTag\n\t\tcmd_resume\t\t\t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"Commands\").getChild(\"resume_tag\").props.params.selectedTag\n\t\t\n\t\t# Check if exists\n\t\tnamedQuery \u003d \"CIP_Q/DB_Scalar/Get_CIP_Line\"\n\t\tparameters \u003d {\n\t\t\t\u0027system_id\u0027:\t\tsystem_id,\n\t\t\t\u0027name\u0027:\t\t\t\tline_name,\n\t\t}\n\t\t\n\t\texists \u003d system.db.runNamedQuery(system.project.getProjectName(), namedQuery, parameters)\n\t\t\n\t\tif exists \u003e 0 and edit \u003d\u003d False:\n\t\t\tCORE_P.Utils.errorPopup(\u0027A line with that name already exists under the selected system.\u0027) \n\t\t\treturn\n\t\t\n\t\tif edit \u003d\u003d False:\n\t\t\n\t\t\tnamedQuery \u003d \"CIP_Q/DB_Insert/Insert_CIP_Line\"\n\t\t\tparameters \u003d {\n\t\t        \u0027system_id\u0027: \t\t\t\t\tsystem_id, \n\t\t        \u0027name\u0027: \t\t\t\t\t\tline_name, \n\t\t        \u0027description\u0027: \t\t\t\tline_description,\n\t\t        \u0027supply_temp_transmitter\u0027: \tsupply_temp_transmitter if supply_temp_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_flow_transmitter\u0027: \tsupply_flow_transmitter if supply_flow_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_cond_transmitter\u0027: \tsupply_cond_transmitter if supply_cond_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_press_transmitter\u0027: \tsupply_press_transmitter if supply_press_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_temp_switch\u0027: \t\t\tsupply_temp_switch if supply_temp_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_flow_switch\u0027: \t\t\tsupply_flow_switch if supply_flow_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_cond_switch\u0027: \t\t\tsupply_cond_switch if supply_cond_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_press_switch\u0027: \t\tsupply_press_switch if supply_press_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_temp_transmitter\u0027: \treturn_temp_transmitter if return_temp_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_flow_transmitter\u0027: \treturn_flow_transmitter if return_flow_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_cond_transmitter\u0027: \treturn_cond_transmitter if return_cond_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_press_transmitter\u0027: \treturn_press_transmitter if return_press_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_temp_switch\u0027: \t\t\treturn_temp_switch if return_temp_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_flow_switch\u0027: \t\t\treturn_flow_switch if return_flow_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_cond_switch\u0027: \t\t\treturn_cond_switch if return_cond_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_press_switch\u0027: \t\treturn_press_switch if return_press_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027type_sanitizer\u0027: \t\t\t\ttype_sanitizer if type_sanitizer !\u003d \u0027\u0027 else None,\n\t\t        \u0027type_caustic\u0027: \t\t\t\ttype_caustic if type_caustic !\u003d \u0027\u0027 else None,\n\t\t        \u0027type_acid\u0027: \t\t\t\t\ttype_acid if type_acid !\u003d \u0027\u0027 else None,\n\t\t        \u0027type_alkaline\u0027: \t\t\t\ttype_alkaline if type_alkaline !\u003d \u0027\u0027 else None,\n\t\t        \u0027cmd_advance\u0027: \t\t\t\tcmd_advance if cmd_advance !\u003d \u0027\u0027 else None,\n\t\t        \u0027cmd_hold\u0027: \t\t\t\t\tcmd_hold if cmd_hold !\u003d \u0027\u0027 else None,\n\t\t        \u0027cmd_pause\u0027: \t\t\t\t\tcmd_pause if cmd_pause !\u003d \u0027\u0027 else None,\n\t\t        \u0027cmd_resume\u0027: \t\t\t\t\tcmd_resume if cmd_resume !\u003d \u0027\u0027 else None,\n\t\t        \u0027updated_by\u0027:\t\t\t\t\tupdated_by,\n\t\t    }\n\t\t\t\n\t\telse:\n\t\t\n\t\t\tnamedQuery \u003d \"CIP_Q/DB_Update/Update_CIP_Line\"\n\t\t\tparameters \u003d {\n\t\t\t\t\u0027id\u0027:\t\t\t\t\t\t\tline_id,\n\t\t\t\t\u0027system_id\u0027:\t\t\t\t\tsystem_id,\n\t\t\t\t\u0027name\u0027: \t\t\t\t\t\tline_name, \n\t\t        \u0027description\u0027: \t\t\t\tline_description,\n\t\t        \u0027supply_temp_transmitter\u0027: \tsupply_temp_transmitter if supply_temp_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_flow_transmitter\u0027: \tsupply_flow_transmitter if supply_flow_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_cond_transmitter\u0027: \tsupply_cond_transmitter if supply_cond_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_press_transmitter\u0027: \tsupply_press_transmitter if supply_press_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_temp_switch\u0027: \t\t\tsupply_temp_switch if supply_temp_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_flow_switch\u0027: \t\t\tsupply_flow_switch if supply_flow_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_cond_switch\u0027: \t\t\tsupply_cond_switch if supply_cond_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027supply_press_switch\u0027: \t\tsupply_press_switch if supply_press_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_temp_transmitter\u0027: \treturn_temp_transmitter if return_temp_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_flow_transmitter\u0027: \treturn_flow_transmitter if return_flow_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_cond_transmitter\u0027: \treturn_cond_transmitter if return_cond_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_press_transmitter\u0027: \treturn_press_transmitter if return_press_transmitter !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_temp_switch\u0027: \t\t\treturn_temp_switch if return_temp_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_flow_switch\u0027: \t\t\treturn_flow_switch if return_flow_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_cond_switch\u0027: \t\t\treturn_cond_switch if return_cond_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027return_press_switch\u0027: \t\treturn_press_switch if return_press_switch !\u003d \u0027\u0027 else None,\n\t\t        \u0027type_sanitizer\u0027: \t\t\t\ttype_sanitizer if type_sanitizer !\u003d \u0027\u0027 else None,\n\t\t        \u0027type_caustic\u0027: \t\t\t\ttype_caustic if type_caustic !\u003d \u0027\u0027 else None,\n\t\t        \u0027type_acid\u0027: \t\t\t\t\ttype_acid if type_acid !\u003d \u0027\u0027 else None,\n\t\t        \u0027type_alkaline\u0027: \t\t\t\ttype_alkaline if type_alkaline !\u003d \u0027\u0027 else None,\n\t\t        \u0027cmd_advance\u0027: \t\t\t\tcmd_advance if cmd_advance !\u003d \u0027\u0027 else None,\n\t\t        \u0027cmd_hold\u0027: \t\t\t\t\tcmd_hold if cmd_hold !\u003d \u0027\u0027 else None,\n\t\t        \u0027cmd_pause\u0027: \t\t\t\t\tcmd_pause if cmd_pause !\u003d \u0027\u0027 else None,\n\t\t        \u0027cmd_resume\u0027: \t\t\t\t\tcmd_resume if cmd_resume !\u003d \u0027\u0027 else None,\n\t\t        \u0027updated_by\u0027:\t\t\t\t\tupdated_by,\n\t\t\t}\n\t\t\t\n\t\taffected_rows \u003d system.db.runNamedQuery(system.project.getProjectName(), namedQuery, parameters,tx\u003dtxId)\n\t\t\n\t\tmessage \u003d  \u0027Added/Edited CIP Line:\u0027 + str(parameters)\n\t\t\n\t\t# Audit log\n\t\tCORE_P.Utils.logChanges(self, \u0027AddEditCIPLine\u0027, message, txId\u003dtxId, site_id\u003dsite_id)\n\t\tsystem.db.commitTransaction(txId)\n\t\n\t\t# Update the table with lines \n\t\tsystem.perspective.sendMessage(\"update_bindings\", payload \u003d {}, scope \u003d \"page\")\n\t\n\t\tCORE_P.Utils.showSuccess(self, \"Saved!\") \n\t\tsystem.perspective.closePopup(\u0027\u0027)\n\t\tsystem.db.closeTransaction(txId)\n\t    \n\texcept:\n\t\tsystem.db.rollbackTransaction(txId)\n\t\tsystem.db.closeTransaction(txId)\n\t\tCORE_P.Utils.errorPopup(\u0027Error adding/editing CIP Line:\u0027) \n\n"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "SaveButton"
+        },
+        "position": {
+          "height": 34,
+          "width": 250,
+          "x": 12,
+          "y": 389
+        },
+        "props": {
+          "text": "Save Line"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\t\t\n\t# Get all the parameters we need to delete\n\t\n\tline_id \t\t\u003d self.view.params.line_id\n\tsite_id\t\t\t\u003d self.view.params.site_id\n\n\ttxId \u003d system.db.beginTransaction(timeout\u003d5000)\n\n\ttry:\n\n\t\tnamedQuery \u003d \"CIP_Q/DB_Delete/Delete_CIP_Line\"\n\t\tparameters \u003d {\n\t\t\t\u0027id\u0027:\t\t\tline_id\n\t\t}\n\t\t\t\n\n\t\taffected_rows \u003d system.db.runNamedQuery(system.project.getProjectName(), namedQuery, parameters,tx\u003dtxId)\n\t\t\n\t\tmessage \u003d  \u0027Deleted CIP Line:\u0027 + str(parameters)\n\t\t\n\t\t# Audit log\n\t\tCORE_P.Utils.logChanges(self, \u0027DeleteCIPLine\u0027,message,txId\u003dtxId,site_id\u003dsite_id)\n\t\tsystem.db.commitTransaction(txId)\n                        \t\t\t\n\t\t# Update the table with lines \n\t\tsystem.perspective.sendMessage(\"update_bindings\", payload \u003d {}, scope \u003d \"page\")\n\n\t\tCORE_P.Utils.showSuccess(self, \"Deleted!\") \n\t\t\n\t\tself.props.value\u003d0\n\t\tsystem.db.closeTransaction(txId)\n\t\tsystem.perspective.closePopup(\u0027\u0027)\n\n\texcept:\n\t\tsystem.db.rollbackTransaction(txId)\n\t\tsystem.db.closeTransaction(txId)\n\t\tself.props.value\u003d0\n\t\tCORE_P.Utils.errorPopup(\u0027Error deleting CIP Line:\u0027) #  + str(sys.exc_info())"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "DeleteButton"
+        },
+        "position": {
+          "height": 34,
+          "width": 127,
+          "x": 736.5,
+          "y": 389
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "path": "view.params.edit"
+              },
+              "type": "property"
+            }
+          },
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "expression": "{session.props.auth.user.userName}"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn CORE_P.User.hasPermission(self, Constants_P.PROJECT[\u0027project_name\u0027], \u0027SITEADMIN\u0027)",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "confirm": {
+            "enabled": true
+          },
+          "disabledStyle": {
+            "backgroundColor": "#FF8A8A"
+          },
+          "readyState": {
+            "icon": {
+              "style": {
+                "height": "24px",
+                "width": "2rem"
+              }
+            },
+            "text": "Delete"
+          },
+          "style": {
+            "backgroundColor": "#FF0000"
+          },
+          "writingState": {
+            "icon": {
+              "path": "material/hourglass_empty",
+              "style": {
+                "height": "24px",
+                "width": "2rem"
+              }
+            },
+            "text": "Deleting..."
+          }
+        },
+        "type": "ia.input.oneshotbutton"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\n\tsystem.perspective.closePopup(\u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "CancelButton"
+        },
+        "position": {
+          "height": 34,
+          "width": 250,
+          "x": 268.5,
+          "y": 389
+        },
+        "props": {
+          "primary": false,
+          "text": "Cancel"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 0,
+      "y": 11
+    },
+    "type": "ia.container.coord"
+  }
+}

@@ -1,0 +1,1057 @@
+{
+  "custom": {},
+  "params": {
+    "circuit_description": "",
+    "circuit_name": "",
+    "edit": true,
+    "id": "",
+    "line_id": "",
+    "line_name": "",
+    "site_id": "",
+    "state_completed": "",
+    "state_held": "",
+    "state_idle": "",
+    "state_paused": "",
+    "state_running": "",
+    "state_stopped": "",
+    "step_number": "",
+    "step_type_id": "",
+    "system_id": "",
+    "system_name": ""
+  },
+  "permissions": {
+    "securityLevels": [
+      {
+        "children": [],
+        "name": "Authenticated"
+      }
+    ],
+    "type": "AllOf"
+  },
+  "propConfig": {
+    "params.circuit_description": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.circuit_name": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.edit": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.line_id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.line_name": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.sample_point_id": {
+      "paramDirection": "input",
+      "persistent": false
+    },
+    "params.site_id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.state_completed": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.state_held": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.state_idle": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.state_paused": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.state_running": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.state_stopped": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.step_number": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.step_type_id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.system_id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.system_name": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 568,
+      "width": 880
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "System_Dropdown"
+        },
+        "position": {
+          "height": 36,
+          "width": 536,
+          "x": 145,
+          "y": 28
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "enableValueCache": false,
+                "parameters": {
+                  "site_id": "{view.params.site_id}"
+                },
+                "queryPath": "CIP_Q/DB_Query/Get_CIP_System",
+                "returnFormat": "json"
+              },
+              "transforms": [
+                {
+                  "code": "\t\n\t# Format and sort the names \n\tformatted_names \u003d sorted([{\"value\": item[\"id\"], \"label\": item[\"name\"]} for item in value],key\u003dlambda x: x[\u0027label\u0027].lower())\n\treturn formatted_names\n\t",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.system_id}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "placeholder": {
+            "text": "Select System..."
+          }
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "height": 32,
+          "width": 140,
+          "x": 22,
+          "y": 26.5
+        },
+        "props": {
+          "text": "System:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Line_Dropdown"
+        },
+        "position": {
+          "height": 36,
+          "width": 536,
+          "x": 145,
+          "y": 69
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "enableValueCache": false,
+                "parameters": {
+                  "site_id": "{view.params.site_id}"
+                },
+                "queryPath": "CIP_Q/DB_Query/Get_CIP_Line",
+                "returnFormat": "json"
+              },
+              "transforms": [
+                {
+                  "code": "\t\n\t# Format and sort the names \n\tformatted_names \u003d sorted([{\"value\": item[\"id\"], \"label\": item[\"name\"]} for item in value],key\u003dlambda x: x[\u0027label\u0027].lower())\n\treturn formatted_names\n\t",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          },
+          "props.value": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.line_id}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "placeholder": {
+            "text": "Select Line..."
+          }
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "Line_Label"
+        },
+        "position": {
+          "height": 32,
+          "width": 140,
+          "x": 22,
+          "y": 71
+        },
+        "props": {
+          "text": "Line:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "height": 95,
+          "width": 115,
+          "x": 724,
+          "y": 63.5
+        },
+        "props": {
+          "path": "material/construction"
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Name_Label"
+        },
+        "position": {
+          "height": 32,
+          "width": 140,
+          "x": 22,
+          "y": 112
+        },
+        "props": {
+          "text": "Name:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Name_Entry"
+        },
+        "position": {
+          "height": 36,
+          "width": 536,
+          "x": 145,
+          "y": 110
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "toStr({view.params.circuit_name},\"\")"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "placeholder": "Enter Circuit Name"
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "Description_Label"
+        },
+        "position": {
+          "height": 32,
+          "width": 140,
+          "x": 22,
+          "y": 153
+        },
+        "props": {
+          "text": "Description:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Description_Entry"
+        },
+        "position": {
+          "height": 36,
+          "width": 536,
+          "x": 145,
+          "y": 151
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "toStr({view.params.circuit_description},\"\")"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "placeholder": "Enter Circuit Description"
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "number_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 156,
+                  "y": 12
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "tostr({view.params.step_number},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.view.params.step_number\u003dcurrentValue"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "number_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 10,
+                  "y": 18
+                },
+                "props": {
+                  "text": "Step Number:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "type_dropdown"
+                },
+                "position": {
+                  "height": 36,
+                  "width": 538,
+                  "x": 159,
+                  "y": 53
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "enableValueCache": false,
+                        "parameters": {
+                          "site_id": "{view.params.site_id}"
+                        },
+                        "queryPath": "CIP_Q/DB_Query/Get_Step_Type",
+                        "returnFormat": "json"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t\n\t# Format and sort the names \n\tformatted_names \u003d sorted([{\"value\": item[\"id\"], \"label\": item[\"name\"]} for item in value],key\u003dlambda x: x[\u0027label\u0027].lower())\n\treturn formatted_names\n\t",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.params.step_type_id"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": {
+                    "text": "Select Step Dictionary..."
+                  }
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "type_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 140,
+                  "x": 10,
+                  "y": 55
+                },
+                "props": {
+                  "text": "Step Dictionary:"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "Step_Number"
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "idle_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 156,
+                  "y": 12
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.state_idle},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.meta.name}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.params.state_idle"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "idle_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 111,
+                  "x": 10,
+                  "y": 18
+                },
+                "props": {
+                  "text": "Idle:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "running_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 156,
+                  "y": 50
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.state_running},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.meta.name}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.params.state_running"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "running_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 111,
+                  "x": 10,
+                  "y": 56
+                },
+                "props": {
+                  "text": "Running:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "held_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 156,
+                  "y": 88
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.state_held},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.meta.name}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.params.state_held"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "held_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 111,
+                  "x": 10,
+                  "y": 94
+                },
+                "props": {
+                  "text": "Held:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "paused_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 156,
+                  "y": 126
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.state_paused},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.meta.name}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.params.state_paused"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "paused_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 111,
+                  "x": 10,
+                  "y": 132
+                },
+                "props": {
+                  "text": "Paused:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "completed_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 156,
+                  "y": 164
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.state_completed},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.meta.name}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.params.state_completed"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "completed_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 111,
+                  "x": 10,
+                  "y": 170
+                },
+                "props": {
+                  "text": "Completed:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "stopped_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 156,
+                  "y": 202
+                },
+                "propConfig": {
+                  "props.params.initial_tag": {
+                    "binding": {
+                      "config": {
+                        "expression": "toStr({view.params.state_stopped},\"\")"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.meta.name}"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "view.params.state_stopped"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "stopped_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 111,
+                  "x": 10,
+                  "y": 208
+                },
+                "props": {
+                  "text": "Stopped:"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "States"
+            },
+            "position": {
+              "tabIndex": 1
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "seq_tag"
+                },
+                "position": {
+                  "height": 38,
+                  "width": 710,
+                  "x": 155.8330114440918,
+                  "y": 12
+                },
+                "propConfig": {
+                  "props.params.inputName": {
+                    "binding": {
+                      "config": {
+                        "path": "this.meta.name"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.selectedTag": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tif currentValue.value\u003d\u003d\u0027\u0027:\n\t\treturn\n\t\t\n\t# Find the index of the last slash in the tag path\n\tlastIndex \u003d str(currentValue.value).rfind(\u0027/\u0027)\n\tpath \u003d str(currentValue.value[:lastIndex])\n\t\n\tself.parent.parent.getChild(\"States\").getChild(\"idle_tag\").props.params.selectedTag\t\t\t\u003d path + \"/State_Idle\"\n\tself.parent.parent.getChild(\"States\").getChild(\"idle_tag\").props.params.selectedTag \t\t\t\u003d path + \"/State_Idle\"\n\n\tself.parent.parent.getChild(\"States\").getChild(\"running_tag\").props.params.selectedTag\t\t\u003d path + \"/State_Running\"\n\tself.parent.parent.getChild(\"States\").getChild(\"running_tag\").props.params.selectedTag \t\t\u003d path + \"/State_Running\"\n\t\n\tself.parent.parent.getChild(\"States\").getChild(\"held_tag\").props.params.selectedTag\t\t\t\u003d path + \"/State_Held\"\n\tself.parent.parent.getChild(\"States\").getChild(\"held_tag\").props.params.selectedTag\t \t\t\u003d path + \"/State_Held\"\n\t\n\tself.parent.parent.getChild(\"States\").getChild(\"completed_tag\").props.params.selectedTag\t\t\u003d path + \"/State_Completed\"\n\tself.parent.parent.getChild(\"States\").getChild(\"completed_tag\").props.params.selectedTag\t \t\u003d path + \"/State_Completed\"\n\n\tself.parent.parent.getChild(\"States\").getChild(\"stopped_tag\").props.params.selectedTag\t\t\u003d path + \"/State_Stopped\"\n\tself.parent.parent.getChild(\"States\").getChild(\"stopped_tag\").props.params.selectedTag \t \t\u003d path + \"/State_Stopped\"\n\t\n\tself.parent.parent.getChild(\"States\").getChild(\"paused_tag\").props.params.selectedTag\t\t\u003d path + \"/State_Paused\"\n\tself.parent.parent.getChild(\"States\").getChild(\"paused_tag\").props.params.selectedTag \t \t\u003d path + \"/State_Paused\"\n\n\tself.parent.parent.getChild(\"Step_Number\").getChild(\"number_tag\").props.params.selectedTag\t\u003d path + \"/Step_Number\"\n\tself.parent.parent.getChild(\"Step_Number\").getChild(\"number_tag\").props.params.selectedTag \t\u003d path + \"/Step_Number\"\n\t\n\treturn"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "initial_tag": "",
+                    "selectedTag": ""
+                  },
+                  "path": "CORE_V/Selections/chooseHistoryTagTree"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "seq_label"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 117,
+                  "x": 9.833341444091797,
+                  "y": 18
+                },
+                "props": {
+                  "text": "P Sequencer:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "description"
+                },
+                "position": {
+                  "height": 99.00000000000001,
+                  "width": 817,
+                  "x": 28.65,
+                  "y": 61.33
+                },
+                "props": {
+                  "text": "If circuit uses a P Sequencer, select any tag under the sequencer and the step number and states will automically be assigned.",
+                  "textStyle": {
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "P_Sequencer"
+            },
+            "position": {
+              "tabIndex": 2
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "Settings"
+        },
+        "position": {
+          "height": 292,
+          "width": 877,
+          "x": 1,
+          "y": 208
+        },
+        "props": {
+          "currentTabIndex": 1,
+          "tabSize": {
+            "width": 150
+          },
+          "tabs": [
+            "Step Number",
+            "States",
+            "P_SEQ"
+          ]
+        },
+        "type": "ia.container.tab"
+      },
+      {
+        "custom": {
+          "exists": 0
+        },
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t\n\ttxId \u003d system.db.beginTransaction(timeout\u003d5000)\n\t\t\n\ttry:\n\t\t\n\t\t# Get all the parameters we need to save\n\t\tcircuit_id\t\t\t\t\u003d self.view.params.id\n\t\tsite_id \t\t\t\t\u003d self.view.params.site_id\n\t\tsystem_id\t\t\t\t\u003d self.getSibling(\"System_Dropdown\").props.value\n\t\tline_id\t\t\t\t\t\u003d self.getSibling(\"Line_Dropdown\").props.value\n\t\tcircuit_name\t\t\t\u003d self.getSibling(\"Name_Entry\").props.text\n\t\tcircuit_description\t\t\u003d self.getSibling(\"Description_Entry\").props.text\n\t\tstep_number\t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"Step_Number\").getChild(\"number_tag\").props.params.selectedTag\n\t\tstep_type_id\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"Step_Number\").getChild(\"type_dropdown\").props.value\n\t\tstate_idle\t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"States\").getChild(\"idle_tag\").props.params.selectedTag\n\t\tstate_running\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"States\").getChild(\"running_tag\").props.params.selectedTag\n\t\tstate_held\t\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"States\").getChild(\"held_tag\").props.params.selectedTag\n\t\tstate_aborted\t\t\t\u003d \u0027\u0027\n\t\tstate_completed\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"States\").getChild(\"completed_tag\").props.params.selectedTag\n\t\tstate_stopped\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"States\").getChild(\"stopped_tag\").props.params.selectedTag\n\t\tstate_paused\t\t\t\u003d self.parent.getChild(\"Settings\").getChild(\"States\").getChild(\"paused_tag\").props.params.selectedTag\n\t\tchanged_by\t\t\t\t\u003d self.session.props.auth.user.userName\n\t\tedit\t\t\t\t\t\u003d self.view.params.edit\n\t\t\n\t\t# Check if exists\n\t\tnamedQuery \u003d \"CIP_Q/DB_Scalar/Get_CIP_Circuit\"\n\t\tparameters \u003d {\n\t\t\t\u0027line_id\u0027:\t\t\tline_id, \n\t\t\t\u0027name\u0027:\t\t\t\tcircuit_name\n\t\t}\n\t\t\n\t\texists \u003d system.db.runNamedQuery(system.project.getProjectName(), namedQuery, parameters)\n\t\t\n\t\tif exists \u003e 0 and edit \u003d\u003d False:\n\t\t\tCORE_P.Utils.errorPopup(\u0027A circuit with that name already exists under the selected line.\u0027) \n\t\t\treturn\n\t\n\t\tif edit \u003d\u003d False:\n\t\n\t\t\tnamedQuery \u003d \"CIP_Q/DB_Insert/Insert_CIP_Circuit\"\n\t\t\tparameters \u003d {\n\t\t\t\t\u0027line_id\u0027:\t\t\t\tline_id, \n\t\t\t\t\u0027step_number\u0027:\t\t\tstep_number, \n\t\t\t\t\u0027step_type_id\u0027:\t\tstep_type_id, \n\t\t\t\t\u0027name\u0027:\t\t\t\t\tcircuit_name, \n\t\t\t\t\u0027description\u0027:\t\t \tcircuit_description,\n\t\t\t\t\u0027state_idle\u0027:\t\t\tstate_idle,\n\t  \t\t\t\u0027state_running\u0027:\t\tstate_running,\n\t  \t\t\t\u0027state_held\u0027:\t\t\tstate_held,\n\t  \t\t\t\u0027state_aborted\u0027:\t\tstate_aborted,\n\t  \t\t\t\u0027state_completed\u0027:\t\tstate_completed,\n\t  \t\t\t\u0027state_stopped\u0027:\t\tstate_stopped,\n\t  \t\t\t\u0027state_paused\u0027:\t\t\tstate_paused,\n\t  \t\t\t\u0027changed_by\u0027:\t\t\tchanged_by\n\t\t\t}\n\t\t\t\n\t\telse:\n\t\t\n\t\t\tnamedQuery \u003d \"CIP_Q/DB_Update/Update_CIP_Circuit\"\n\t\t\tparameters \u003d {\n\t\t\t\t\u0027id\u0027:\t\t\t\t\tcircuit_id, \n\t\t\t\t\u0027line_id\u0027:\t\t\t\tline_id, \n\t\t\t\t\u0027step_number\u0027:\t\t\tstep_number, \n\t\t\t\t\u0027step_type_id\u0027:\t\t\tstep_type_id, \n\t\t\t\t\u0027name\u0027:\t\t\t\t\tcircuit_name, \n\t\t\t\t\u0027description\u0027:\t\t \tcircuit_description,\n\t\t\t\t\u0027state_idle\u0027:\t\t\tstate_idle,\n\t  \t\t\t\u0027state_running\u0027:\t\tstate_running,\n\t  \t\t\t\u0027state_held\u0027:\t\t\tstate_held,\n\t  \t\t\t\u0027state_aborted\u0027:\t\tstate_aborted,\n\t  \t\t\t\u0027state_completed\u0027:\t\tstate_completed,\n\t  \t\t\t\u0027state_stopped\u0027:\t\tstate_stopped,\n\t  \t\t\t\u0027state_paused\u0027:\t\t\tstate_paused,\n\t  \t\t\t\u0027changed_by\u0027:\t\t\tchanged_by\n\t\t\t}\n\t\t\t\n\t\taffected_rows \u003d system.db.runNamedQuery(system.project.getProjectName(), namedQuery, parameters,tx\u003dtxId)\n\t\t\n\t\tmessage \u003d  \u0027Added/Edited CIP Circuit:\u0027 + str(parameters)\n\t\t\n\t\t# Audit log\n\t\tCORE_P.Utils.logChanges(self, \u0027AddEditCIPCircuit\u0027, message, txId\u003dtxId, site_id\u003dsite_id)\n\t\tsystem.db.commitTransaction(txId)\n\t\n\t\t# Update the table with lines \n\t\tsystem.perspective.sendMessage(\"update_bindings\", payload \u003d {}, scope \u003d \"page\")\n\t\n\t\tCORE_P.Utils.showSuccess(self, \"Saved!\") \n\t\tsystem.perspective.closePopup(\u0027\u0027)\n\t\tsystem.db.closeTransaction(txId)\n\t    \n\texcept:\n\t\tsystem.db.rollbackTransaction(txId)\n\t\tsystem.db.closeTransaction(txId)\n\t\tCORE_P.Utils.errorPopup(\u0027Error adding/editing CIP Circuit:\u0027) #  + str(sys.exc_info())\n"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "SaveButton"
+        },
+        "position": {
+          "height": 34,
+          "width": 250,
+          "x": 13.75,
+          "y": 516
+        },
+        "props": {
+          "text": "Save CIP Circuit"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\t\t\n\t# Get all the parameters we need to delete\n\t\n\tcircuit_id \t\t\u003d self.view.params.id\n\tsite_id\t\t\t\u003d self.view.params.site_id\n\n\ttxId \u003d system.db.beginTransaction(timeout\u003d5000)\n\n\ttry:\n\n\t\tnamedQuery \u003d \"CIP_Q/DB_Delete/Delete_CIP_Circuit\"\n\t\tparameters \u003d {\n\t\t\t\u0027id\u0027:\t\t\tcircuit_id\n\t\t}\n\t\t\t\n\n\t\taffected_rows \u003d system.db.runNamedQuery(system.project.getProjectName(), namedQuery, parameters,tx\u003dtxId)\n\t\t\n\t\tmessage \u003d  \u0027Deleted CIP Circuit:\u0027 + str(parameters)\n\t\t\n\t\t# Audit log\n\t\tCORE_P.Utils.logChanges(self, \u0027DeleteCIPCircuit\u0027,message,txId\u003dtxId,site_id\u003dsite_id)\n\t\tsystem.db.commitTransaction(txId)\n                        \t\t\t\n\t\t# Update the table with lines \n\t\tsystem.perspective.sendMessage(\"update_bindings\", payload \u003d {}, scope \u003d \"page\")\n\n\t\tCORE_P.Utils.showSuccess(self, \"Deleted!\") \n\t\t\n\t\tself.props.value\u003d0\n\t\tsystem.db.closeTransaction(txId)\n\t\tsystem.perspective.closePopup(\u0027\u0027)\n\n\texcept:\n\t\tsystem.db.rollbackTransaction(txId)\n\t\tsystem.db.closeTransaction(txId)\n\t\tself.props.value\u003d0\n\t\tCORE_P.Utils.errorPopup(\u0027Error deleting CIP Circuit:\u0027) #  + str(sys.exc_info())"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "DeleteButton"
+        },
+        "position": {
+          "height": 34,
+          "width": 127,
+          "x": 738.25,
+          "y": 516
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "path": "view.params.edit"
+              },
+              "type": "property"
+            }
+          },
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "expression": "{session.props.auth.user.userName}"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn CORE_P.User.hasPermission(self, Constants_P.PROJECT[\u0027project_name\u0027], \u0027SITEADMIN\u0027)",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "confirm": {
+            "enabled": true
+          },
+          "disabledStyle": {
+            "backgroundColor": "#FF8A8A"
+          },
+          "readyState": {
+            "icon": {
+              "style": {
+                "height": "24px",
+                "width": "2rem"
+              }
+            },
+            "text": "Delete"
+          },
+          "style": {
+            "backgroundColor": "#FF0000"
+          },
+          "writingState": {
+            "icon": {
+              "path": "material/hourglass_empty",
+              "style": {
+                "height": "24px",
+                "width": "2rem"
+              }
+            },
+            "text": "Deleting..."
+          }
+        },
+        "type": "ia.input.oneshotbutton"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\n\tsystem.perspective.closePopup(\u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "CancelButton"
+        },
+        "position": {
+          "height": 34,
+          "width": 250,
+          "x": 270.25,
+          "y": 516
+        },
+        "props": {
+          "primary": false,
+          "text": "Cancel"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 87.5,
+      "y": -4.5
+    },
+    "type": "ia.container.coord"
+  }
+}

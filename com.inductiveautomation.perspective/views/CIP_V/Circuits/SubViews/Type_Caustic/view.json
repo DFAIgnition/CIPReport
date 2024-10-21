@@ -1,0 +1,101 @@
+{
+  "custom": {},
+  "params": {
+    "rowData": ""
+  },
+  "propConfig": {
+    "params.rowData": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 18,
+      "width": 18
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Caustic",
+              "tooltip": {
+                "enabled": true,
+                "text": "Caustic"
+              }
+            },
+            "position": {
+              "basis": "16px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.rowData[\u0027type_caustic\u0027]"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "#D5D5D533",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": true,
+                          "output": "#AC00AC"
+                        },
+                        {
+                          "input": false,
+                          "output": "#D5D5D533"
+                        }
+                      ],
+                      "outputType": "color",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "borderRadius": "4px",
+                "classes": "CIP_S/Framework/Card/Value",
+                "color": "#FFFFFF",
+                "textAlign": "center"
+              },
+              "text": "C"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Caustic"
+        },
+        "position": {
+          "basis": "66px"
+        },
+        "props": {
+          "alignContent": "center",
+          "alignItems": "center",
+          "justify": "center",
+          "style": {
+            "overflow": "hidden"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignContent": "center",
+      "alignItems": "center",
+      "justify": "center"
+    },
+    "type": "ia.container.flex"
+  }
+}

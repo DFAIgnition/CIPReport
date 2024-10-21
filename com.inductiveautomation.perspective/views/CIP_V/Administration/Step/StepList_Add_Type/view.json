@@ -1,0 +1,204 @@
+{
+  "custom": {},
+  "params": {
+    "set_description": "",
+    "set_name": "",
+    "site_id": ""
+  },
+  "permissions": {
+    "securityLevels": [
+      {
+        "children": [],
+        "name": "Authenticated"
+      }
+    ],
+    "type": "AllOf"
+  },
+  "propConfig": {
+    "params.sample_point_id": {
+      "paramDirection": "input",
+      "persistent": false
+    },
+    "params.set_description": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.set_name": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.site_id": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 149,
+      "width": 670
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "height": 95,
+          "width": 115,
+          "x": 550.5,
+          "y": 17
+        },
+        "props": {
+          "path": "material/construction"
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Name_Label"
+        },
+        "position": {
+          "height": 32,
+          "width": 140,
+          "x": 12,
+          "y": 10
+        },
+        "props": {
+          "text": "Name:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Name_Entry"
+        },
+        "position": {
+          "height": 36,
+          "width": 355,
+          "x": 161,
+          "y": 10
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "toStr({view.params.set_name},\"\")"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "placeholder": "Enter Set Name"
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "Description_Label"
+        },
+        "position": {
+          "height": 32,
+          "width": 140,
+          "x": 12,
+          "y": 48.5
+        },
+        "props": {
+          "text": "Description:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Description_Entry"
+        },
+        "position": {
+          "height": 36,
+          "width": 355,
+          "x": 161,
+          "y": 48.5
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "toStr({view.params.set_description},\"\")"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "placeholder": "Enter Set Description"
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "custom": {
+          "exists": 0
+        },
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t\n\t# Get all the parameters we need to save\n\t\n\tparameters \u003d {\n\t\t\t\t\t\u0027site_id\u0027: \t\t\t\tself.view.params.site_id,\n\t\t\t\t\t\u0027name\u0027:\t\t\t\t\tself.getSibling(\"Name_Entry\").props.text,\n\t\t\t\t\t\u0027description\u0027:\t\t\tself.getSibling(\"Description_Entry\").props.text,\n\t\t\t\t}\n\t\n\ttxId \u003d system.db.beginTransaction(timeout\u003d5000)\n\t\n\ttry:\n\t\n\t\t# Check if the entry already exists if not add new set\n\t\texists_count \u003d system.db.runNamedQuery(system.project.getProjectName(), \u0027CIP_Q/DB_Scalar/Get_Step_Type\u0027, parameters, tx\u003dtxId)\n\t\t\n\t\tif exists_count \u003d\u003d 0:\n\t\t\t# Insert Step Dataset if it doesn\u0027t exist yet\n\t\t\tstep_type_id \u003d system.db.runNamedQuery(system.project.getProjectName(),\u0027CIP_Q/DB_Insert/Insert_Step_Type\u0027, parameters, tx\u003dtxId, getKey\u003d1)\n\t\t\tsystem.db.commitTransaction(txId)\n\t\t\t\n\t\t\t# Update the table with lines \n\t\t\tsystem.perspective.sendMessage(\"update_bindings\", payload \u003d {}, scope \u003d \"page\")\n\t\n\t\t\tCORE_P.Utils.showSuccess(self, \"Saved!\") \n\t\t\t\n\t\t\tCORE_P.Utils.logChanges(self, \u0027CIPStepSet\u0027, \u0027Added new set.\u0027, txId\u003dtxId, site_id\u003dself.view.params.site_id)\n\t\t\t\n\t\t\tsystem.perspective.closePopup(\u0027\u0027)\n\t\t\tsystem.db.closeTransaction(txId) \n\n\texcept:\n\t\tsystem.db.rollbackTransaction(txId)\n\t\tsystem.db.closeTransaction(txId) \n\t\tCORE_P.Utils.errorPopup(\u0027Error adding/editing CIP Step Type:\u0027) #  + str(sys.exc_info())\n"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "SaveButton"
+        },
+        "position": {
+          "height": 34,
+          "width": 250,
+          "x": 11.5,
+          "y": 100
+        },
+        "props": {
+          "text": "Save Set"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\n\tsystem.perspective.closePopup(\u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "CancelButton"
+        },
+        "position": {
+          "height": 34,
+          "width": 250,
+          "x": 268,
+          "y": 100
+        },
+        "props": {
+          "primary": false,
+          "text": "Cancel"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 87.5,
+      "y": -4.5
+    },
+    "type": "ia.container.coord"
+  }
+}

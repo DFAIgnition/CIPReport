@@ -1,0 +1,106 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Type"
+        },
+        "props": {
+          "path": "CIP_V/Administration/Type/List"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "System"
+        },
+        "position": {
+          "tabIndex": 1
+        },
+        "props": {
+          "path": "CIP_V/Administration/System/List"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Line"
+        },
+        "position": {
+          "tabIndex": 2
+        },
+        "props": {
+          "path": "CIP_V/Administration/Line/List"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Circuit"
+        },
+        "position": {
+          "tabIndex": 3
+        },
+        "props": {
+          "path": "CIP_V/Administration/Circuit/List"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Steps"
+        },
+        "position": {
+          "tabIndex": 4
+        },
+        "props": {
+          "path": "CIP_V/Administration/Step/StepList"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Users"
+        },
+        "position": {
+          "tabIndex": 5
+        },
+        "props": {
+          "path": "Users_V/UserAdmin"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Aggregator"
+        },
+        "position": {
+          "tabIndex": 6
+        },
+        "props": {
+          "path": "CIP_V/Administration/Aggregator/Aggregator"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "currentTabIndex": 6,
+      "tabs": [
+        "Type",
+        "System",
+        "Lines",
+        "Circuits",
+        "Steps",
+        "Users",
+        "Aggregator"
+      ]
+    },
+    "type": "ia.container.tab"
+  }
+}

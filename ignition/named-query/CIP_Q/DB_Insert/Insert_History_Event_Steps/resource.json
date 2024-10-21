@@ -1,0 +1,90 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "f129515fb7dfac8ef30a521a1a4f6c6865aa76c9e02d4725983bc4ef71a82af7",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "nfische",
+      "timestamp": "2024-05-08T13:02:10Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "time_start",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "time_end",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "duration",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "pause_count",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "held_count",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "advanced_count",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "pause_duration",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "held_duration",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "history_id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "step_number",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "step_description",
+        "sqlType": 7
+      }
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "pages": {
+    "/admin": {
+      "title": "Administration CIP Reporting",
+      "viewPath": "CIP_V/Administration/Admin"
+    },
+    "/main": {
+      "title": "History",
+      "viewPath": "CIP_V/Circuits/View"
+    }
+  },
+  "sharedDocks": {
+    "cornerPriority": "top-bottom",
+    "left": [
+      {
+        "anchor": "fixed",
+        "autoBreakpoint": 768,
+        "content": "push",
+        "handle": "hide",
+        "iconUrl": "",
+        "id": "menu1",
+        "modal": false,
+        "resizable": false,
+        "show": "onDemand",
+        "size": 250,
+        "viewParams": {},
+        "viewPath": "CORE_V/Docks/Menu/Menu1"
+      }
+    ],
+    "top": [
+      {
+        "anchor": "fixed",
+        "autoBreakpoint": 480,
+        "content": "push",
+        "handle": "hide",
+        "iconUrl": "",
+        "id": "",
+        "modal": false,
+        "resizable": false,
+        "show": "visible",
+        "size": 58,
+        "viewParams": {
+          "breakpointLarge": "768",
+          "breakpointMedium": "500",
+          "params": {},
+          "path": "CORE_V/Docks/Header/MainHeader"
+        },
+        "viewPath": "CORE_V/Breakpoints/Breakpoint"
+      }
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "f7763cd02ec9106a632662de2e74f98f1d239c0cfe62c1be835c97a70dc00bf1",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "nfische",
+      "timestamp": "2024-05-15T22:45:40Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "site_id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "system_id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "line_id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "circuit_id",
+        "sqlType": 2
+      }
+    ]
+  }
+}

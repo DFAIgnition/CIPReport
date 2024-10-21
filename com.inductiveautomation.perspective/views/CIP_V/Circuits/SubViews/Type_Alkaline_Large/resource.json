@@ -1,0 +1,16 @@
+{
+  "scope": "G",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "view.json"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "nfische",
+      "timestamp": "2024-05-15T13:21:32Z"
+    },
+    "lastModificationSignature": "ddc0101832b26e40f1db8767e31ee4cccd4885b08ffb2d8732be2ab5a0047cd4"
+  }
+}

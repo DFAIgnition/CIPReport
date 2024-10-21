@@ -1,0 +1,110 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "b47715193f931957362cc3e8135af2b05b63ac3df3eea53164ec0a56d209ec2b",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "nfische",
+      "timestamp": "2024-05-06T17:15:08Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "circuit_id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "time_start",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "time_end",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "duration",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "stop_reason",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "pause_count",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "held_count",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "advanced_count",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "pause_duration",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "held_duration",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "type_acid",
+        "sqlType": 6
+      },
+      {
+        "type": "Parameter",
+        "identifier": "type_caustic",
+        "sqlType": 6
+      },
+      {
+        "type": "Parameter",
+        "identifier": "type_alkaline",
+        "sqlType": 6
+      },
+      {
+        "type": "Parameter",
+        "identifier": "id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "type_sanitizer",
+        "sqlType": 6
+      }
+    ]
+  }
+}
