@@ -1,0 +1,200 @@
+{
+  "custom": {},
+  "params": {
+    "OneShot": false,
+    "buttonText": "Select a tag",
+    "clear_flag": "False",
+    "initial_tag": "",
+    "selectedTag": ""
+  },
+  "propConfig": {
+    "params.OneShot": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.buttonText": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.clear_flag": {
+      "onChange": {
+        "enabled": null,
+        "script": "\tif (self.params.clear_flag \u003d\u003d True):\n\t\tself.getChild(\"root\").getChild(\"selectedTag\").props.text \u003d \u0027\u0027\n\t\tself.params.clear_flag \u003d False"
+      },
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.initial_tag": {
+      "onChange": {
+        "enabled": null,
+        "script": "\tif self.params.OneShot\u003d\u003dFalse:\n\t\tself.params.OneShot\u003dTrue\n\t\tself.getChild(\"root\").getChild(\"selectedTag\").props.text\u003dself.params.initial_tag"
+      },
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.inputName": {
+      "paramDirection": "input",
+      "persistent": false
+    },
+    "params.selectedTag": {
+      "binding": {
+        "config": {
+          "path": "/root/selectedTag.props.text"
+        },
+        "type": "property"
+      },
+      "paramDirection": "output",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 42,
+      "width": 715
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "selectedTag",
+          "tooltip": {
+            "enabled": true
+          }
+        },
+        "position": {
+          "height": 34,
+          "width": 538,
+          "x": 3,
+          "y": 3
+        },
+        "propConfig": {
+          "meta.tooltip.text": {
+            "binding": {
+              "config": {
+                "path": "this.props.text"
+              },
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.initial_tag"
+              },
+              "enabled": false,
+              "type": "property"
+            },
+            "persistent": false
+          }
+        },
+        "props": {
+          "enabled": false,
+          "placeholder": "Select a tag"
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "draggable": true,
+                "id": "qisKgKwL",
+                "modal": true,
+                "overlayDismiss": false,
+                "resizable": false,
+                "showCloseIcon": true,
+                "title": "Select a tag",
+                "type": "open",
+                "viewParams": {
+                  "target": "{view.params.inputName}"
+                },
+                "viewPath": "CORE_V/Selections/chooseHistoryTagTreePopup",
+                "viewportBound": true
+              },
+              "scope": "C",
+              "type": "popup"
+            }
+          }
+        },
+        "meta": {
+          "name": "SelectButton"
+        },
+        "position": {
+          "height": 34,
+          "width": 132,
+          "x": 578,
+          "y": 3
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.buttonText"
+              },
+              "enabled": false,
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "primary": false,
+          "text": "Select a tag"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tself.getSibling(\"selectedTag\").props.text \u003d \u0027\u0027"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "DeleteIcon",
+          "tooltip": {
+            "enabled": true,
+            "text": "Clear selected tag"
+          }
+        },
+        "position": {
+          "height": 30,
+          "width": 30,
+          "x": 540,
+          "y": 5
+        },
+        "props": {
+          "color": "#AC4D4D",
+          "path": "material/delete_forever",
+          "style": {
+            "cursor": "pointer"
+          }
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "selectTag",
+          "pageScope": true,
+          "script": "\t# implement your handler here\n\t#logger \u003d system.util.getLogger(\"JAY\")\n\t#logger.warn(\"Received message from tag select\" + str(payload))\n\t#logger.warn(\"Payload \u003d \" +payload[\u0027target\u0027])\n\t#logger.warn(\"Input name \u003d \" +self.view.params.inputName)\n\t\n\tif (payload[\u0027target\u0027] \u003d\u003d self.view.params.inputName):\n\t\tself.getChild(\u0027selectedTag\u0027).props.text \u003d payload[\u0027selectedTag\u0027]\n\t\n",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}
